@@ -52,9 +52,6 @@ Resources:
             ResponsePagePath: '/404.html'
         DefaultRootObject: 'index.html'
         HttpVersion: http2
-        OriginCustomHeaders:
-          - HeaderName: Referer
-            HeaderValue: !Ref Referer
         Origins:
           - DomainName: !Ref 'BucketUri'
             Id: s3Origin # Just needs to be unique within the distribution
@@ -62,6 +59,9 @@ Resources:
               HTTPPort: 80
               HTTPSPort: 443
               OriginProtocolPolicy: http-only
+            OriginCustomHeaders:
+              - HeaderName: Referer
+                HeaderValue: !Ref Referer
         PriceClass: 'PriceClass_All'
 Outputs:
   DistributionDomainName:

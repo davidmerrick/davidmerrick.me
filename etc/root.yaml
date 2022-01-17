@@ -29,7 +29,7 @@ Resources:
   ReadPolicy:
     Type: 'AWS::S3::BucketPolicy'
     Properties:
-      Bucket: !Ref WebsiteBucket
+      Bucket: !Ref 'WebsiteBucket'
       PolicyDocument:
         Version: 2012-10-17
         Statement:
@@ -37,9 +37,10 @@ Resources:
             Action: 's3:GetObject'
             Effect: Allow
             Resource: !Sub 'arn:aws:s3:::${WebsiteBucket}/*'
+            Principal: '*'
             Condition:
               StringEquals:
-                'aws:Referer': !Ref Referer
+                'aws:Referer': !Ref 'Referer'
   Certificate:
     Type: 'AWS::CertificateManager::Certificate'
     Properties:
@@ -54,7 +55,7 @@ Resources:
     Type: 'AWS::CloudFront::CloudFrontOriginAccessIdentity'
     Properties:
       CloudFrontOriginAccessIdentityConfig:
-        Comment: !Ref WebsiteBucket
+        Comment: !Ref 'WebsiteBucket'
   CloudFrontDistribution:
     Type: 'AWS::CloudFormation::Stack'
     Properties:
@@ -64,14 +65,15 @@ Resources:
         CertArn: !Ref 'WwwCertificate'
         DomainName: !Ref 'DomainName'
         OAI: !Ref 'CloudFrontOriginAccessIdentity'
+        Referer: !Ref 'Referer'
   NonWwwCloudFrontDistribution:
     Type: 'AWS::CloudFront::Distribution'
     Properties:
       DistributionConfig:
         Aliases:
-          - !Ref DomainName
+          - !Ref 'DomainName'
         ViewerCertificate:
-          AcmCertificateArn: !Ref Certificate
+          AcmCertificateArn: !Ref 'Certificate'
           SslSupportMethod: 'sni-only'
         DefaultCacheBehavior:
           ViewerProtocolPolicy: 'redirect-to-https'
@@ -82,7 +84,6 @@ Resources:
           CachedMethods:
             - GET
             - HEAD
-            - OPTIONS
           TargetOriginId: myOrigin
           LambdaFunctionAssociations:
             - EventType: 'viewer-request'
