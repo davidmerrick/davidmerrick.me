@@ -3,6 +3,9 @@ Description: |
   CloudFormation templates for plumbing david-merrick.com.
   Includes bucket and CloudFront distribution.
 Parameters:
+  Referer:
+    Description: Secret referer string for restricting access to the buckets
+    Type: String
   DomainName:
     Description: Website domain name, without www
     Type: String
@@ -34,7 +37,9 @@ Resources:
             Action: 's3:GetObject'
             Effect: Allow
             Resource: !Sub 'arn:aws:s3:::${WebsiteBucket}/*'
-            Principal: '*'
+            Condition:
+              StringEquals:
+                'aws:Referer': !Ref Referer
   Certificate:
     Type: 'AWS::CertificateManager::Certificate'
     Properties:
