@@ -45,7 +45,7 @@ and can correct them for you.
 
 ![]({{site.cdn_path}}/2023/01/02/original_enhanced.jpeg)
 
-An example photo of my mom and her sister at Multnomah Falls in the 80s. 
+An example photo of my mom and her sister at Multnomah Falls in 1991. 
 The original is on the left, enhanced on right.
 
 The enhanced photos are stored alongside the original in this format:
