@@ -43,11 +43,14 @@ faded photos look much better. It doesn't auto-rotate images, unfortunately,
 but I use Google Photos and it has a feature that detects images that aren't rotated properly
 and can correct them for you.
 
+![]({{site.cdn_path}}/2023/01/02/original_enhanced.jpeg)
+
+An example photo of my mom and her sister at Multnomah Falls in the 80s. 
+The original is on the left, enhanced on right.
+
 The enhanced photos are stored alongside the original in this format:
-```
-myphoto.jpg
-myphoto_a.jpg
-```
+
+![]({{site.cdn_path}}/2023/01/02/enhancement_structure.png)
 
 Where the `_a` denotes the enhanced version of the photo.
 
