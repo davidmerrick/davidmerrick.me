@@ -17,11 +17,13 @@ This site has CloudFormation templates for deployment to AWS. Its infrastructure
 
 To create the AWS resources from the template, do the following.
 
+### Set your env vars correctly
 ```bash
 export AWS_PROFILE=cloudformation
 export AWS_REGION=us-east-1
 ```
 
+### Create the S3 bucket and allow permissions
 Manually create the S3 bucket. Then run: 
 ```bash
 aws s3api put-public-access-block \
@@ -30,10 +32,10 @@ aws s3api put-public-access-block \
           "BlockPublicAcls=true,IgnorePublicAcls=true,BlockPublicPolicy=false,RestrictPublicBuckets=false"
 ```
 
-Package the templates:
+### Package the templates:
 `aws cloudformation package --template-file etc/root.yaml --output-template packaged.yaml --s3-bucket io.github.davidmerrick.davidmerrickme.cloudformation`
 
-Deploy the templates:
+### Deploy the templates:
 
 _Note: Make sure to customize the parameter values_
 
