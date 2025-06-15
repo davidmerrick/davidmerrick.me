@@ -25,7 +25,7 @@ Resources:
     Type: 'AWS::Lambda::Function'
     Properties:
       Handler: 'index.handler'
-      Runtime: 'nodejs12.x'
+      Runtime: 'nodejs20.x'
       Description: !Sub 'Redirect function for ${DomainName}'
       Role: !GetAtt 'RedirectLambdaRole.Arn'
       Timeout: 3
@@ -42,7 +42,7 @@ Resources:
               }
 
               var miduri = request.uri.replace(/(\/[\w\-_]+)$/, '$1/');
-              var newuri = "https://www.david-merrick.com" + miduri + params;
+              var newuri = "https://www.davidmerrick.me" + miduri + params;
 
               const response = {
                   status: '301',
