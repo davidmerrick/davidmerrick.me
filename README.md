@@ -43,6 +43,11 @@ _Note: Make sure to customize the parameter values_
 
 Make SURE to update the cloudfront distribution id in the Github workflows.
 
+### Manually approve the certificates
+
+The certificates require manual approval in the AWS console via 
+creating Route53 records to validate the domain ownership.
+
 # Gotchas
 - You need to manually create the S3 bucket which is annoying.
 - Lambda@Edge doesn't allow env vars, so we've got to hardcode the domain name.
