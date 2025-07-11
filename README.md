@@ -55,3 +55,14 @@ creating Route53 records to validate the domain ownership.
 
 # Todo
 - Convert CloudFormation templates to Terraform
+
+
+# Manually building
+```shell
+docker run --rm \
+  --volume "$PWD:/srv/jekyll" \
+  --volume "$PWD/vendor/bundle:/usr/local/bundle" \
+  -w /srv/jekyll \
+  jekyll/builder:4 \
+  jekyll build --destination ./_site
+```
